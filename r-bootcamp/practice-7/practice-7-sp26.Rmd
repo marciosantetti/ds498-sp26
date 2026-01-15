@@ -1,0 +1,91 @@
+---
+title: ".hi[DS 498-02]"
+subtitle: ".b[R Practice 7]"
+author: ".b[Prof. Santetti] <br> Spring 2026"
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'a-css.css']
+    # self_contained: true
+    nature:
+      ratio: '8.5:11'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+layout: true
+class: clear
+---
+
+<br><br><br><br><br><br><br><br><br><br>
+
+.hi[.mono[INSTRUCTIONS]]: `R Practices` have the purpose of making students comfortable with the basics of  $\textsf{R}$ and $\textsf{R}$Studio for empirical macroeconomic analysis.
+
+In this practice, you will aggregate higher-frequency macroeconomic data and work with lower-frequency results. This is relevant depending on how one wants to focus on the issue at hand. 
+
+
+
+<br><br><br>
+
+
+.right[.hi[Have fun!]]
+
+
+---
+class: clear
+
+## Problem 1
+
+<br>
+
+Using FRED, download the monthly federal funds rate data from the `FEDFUNDS` series using this [`link`](https://fred.stlouisfed.org/series/FEDFUNDS#0). `IMPORTANT`: after downloading, do not open this file in Excel/Numbers. Simply save it in your working directory and we'll work with it in .mono[R]Studio.
+
+This is data in monthly frequency. In case we want to analyze the data in, say, *annual* frequency, a graph would look like the following:
+
+<br>
+
+```{r, dev = "svg", echo=FALSE, message=FALSE, warning=FALSE, fig.height=4}
+library(tidyverse)
+library(lubridate)
+library(scales)
+library(janitor)
+library(ggthemes)
+library(showtext)
+
+
+font_add_google(name = "Asap", family = "dosis")
+
+showtext_auto()
+
+theme_set(theme_light(base_family = "dosis"))
+
+
+
+
+ff <- read_csv("ffr.csv")
+
+ff <- ff %>% 
+  clean_names()
+
+
+ff_year <- ff %>% 
+  mutate(year = floor_date(date, unit = "year")) %>% 
+  group_by(year) %>% 
+  summarize(avg_ff = mean(fedfunds))
+
+ff_year %>% 
+  ggplot(aes(x = year, y = avg_ff)) +
+  geom_line(size = .6) +
+  geom_point() +
+  labs(x = "",
+       y = "",
+       title = "US Federal Funds Rate",
+       subtitle = "Yearly frequency, 1954–2023") +
+  scale_y_continuous(labels = percent_format(scale = 1))
+
+```
+
+Using what you've learned in this week's lab lecture, try to replicate the plot above. (Disregard theme and fonts. Use whichever ones you prefer.)
+
+
+---
+exclude:true

@@ -1,0 +1,87 @@
+---
+title: ".hi[DS 498-02]"
+subtitle: ".b[R Practice 5]"
+author: ".b[Prof. Santetti] <br> Spring 2026"
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'a-css.css']
+    # self_contained: true
+    nature:
+      ratio: '8.5:11'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+layout: true
+class: clear
+---
+
+<br><br><br><br><br><br><br><br><br><br>
+
+.hi[.mono[INSTRUCTIONS]]: `R Practices` have the purpose of making students comfortable with the basics of  $\textsf{R}$ and $\textsf{R}$Studio for empirical economic analysis.
+
+In this practice, you will put to practice the necessary customization tasks to make your plots more informative to *any* audience.
+
+
+
+
+<br><br><br>
+
+
+.right[.hi[Have fun!]]
+
+
+---
+class: clear
+
+## Problem 1
+
+<br>
+
+Check out the plots for parts (a) and (b). Working *backwards*, figure out the code that generated the two charts and replicate them. They come from the `brazilian_unemployment.csv` file that you can download from `theSpring`.
+
+<br>
+
+(a)
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(scales)
+
+br <- read_csv("brazilian_unemployment.csv")
+
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, dev = "svg", fig.height = 3.5}
+
+br %>% 
+  ggplot(aes(x = period, y = unemp_rate)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Year", y = "Unemployment rate",
+       title = "Unemployment rate (%), Brazil",
+       subtitle = "1991–2021",
+       caption = "Source: International Labour Organization.") +
+  scale_y_continuous(labels = percent_format(scale = 1))
+```
+
+
+(b)
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, dev = "svg", fig.height = 3.5}
+
+br %>% 
+  ggplot(aes(x = period, y = female_unemp_rate)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Year", y = "Female unemployment rate",
+       title = "Female unemployment rate (%), Brazil",
+       subtitle = "1991–2021",
+       caption = "Source: International Labour Organization.") +
+  scale_y_continuous(labels = percent_format(scale = 1))
+```
+
+
+---
+exclude:true

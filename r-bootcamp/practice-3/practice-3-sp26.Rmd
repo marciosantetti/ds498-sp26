@@ -1,0 +1,72 @@
+---
+title: ".hi[DS 498-02]"
+subtitle: ".b[R Practice 3]"
+author: ".b[Prof. Santetti] <br> Spring 2026"
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'a-css.css']
+    # self_contained: true
+    nature:
+      ratio: '8.5:11'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+layout: true
+class: clear
+---
+
+<br><br><br><br><br>
+
+.hi[.mono[INSTRUCTIONS]]: `R Practices` have the purpose of making students comfortable with the basics of  $\textsf{R}$ and $\textsf{R}$Studio for empirical macroeconomic analysis.
+
+In this practice, you will apply the *data manipulation* techniques you've learned in the last video lecture to macroeconomic data.
+
+
+
+
+<br><br><br>
+
+
+.right[.hi[Have fun!]]
+
+
+---
+class: clear
+
+
+## Problem 1
+
+<br>
+
+
+In the `us_gdp_data.csv` file (available for download on `theSpring`&mdash;see `Data Files` folder), you will find data on several GDP components for the U.S. economy between 2008Q1 and 2022Q4 (notice that "Q" stands for quarter).
+
+After loading the `{tidyverse}` package, import this data set into your .mono[R]Studio environment. Call it `gdp_data`.
+
+Then, make sure to check out its columns. These are GDP components extracted from the National Income and Product Accounts (NIPA) tables.
+
+After you are all set up, answer the following questions:
+
+<br>
+
+(a) Create a new column, called `consumption`, adding up the specific components of aggregate consumption. Update your object, and call it `data_a`.
+
+(b) From your `data_a` object, now create a new column, called `net_exports`, where you calculate the trade balance for the U.S. economy in each year.  Update your object, and call it `data_b`.
+
+
+(c) From your `data_b` object, now create a new column, called `total_govt_expenditures`, where you calculate aggregate government expenditures for the U.S. economy in each year.  Update your object, and call it `data_c`.
+
+(d) Notice that aggregate investment is missing from this table. Calculate its value for each year, calling this new column `investment`. Update your object, and call it `data_d`.
+
+(e) From your `data_d` object, in what year and quarter were `imports` the smallest?
+
+(f) From your `data_d` object, in what year and quarter were `exports` the largest?
+
+(g) From your `data_d` object, in what year and quarter was `consumption` the largest?
+
+(h) From your `data_d` object, in what year and quarter was `investment` the smallest?
+
+
+---
+exclude:true

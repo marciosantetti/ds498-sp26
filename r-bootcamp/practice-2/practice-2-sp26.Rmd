@@ -1,0 +1,116 @@
+---
+title: ".hi[DS 498-02]"
+subtitle: ".b[R Practice 2]"
+author: ".b[Prof. Santetti] <br> Spring 2026"
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'a-css.css']
+    # self_contained: true
+    nature:
+      ratio: '8.5:11'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+layout: true
+class: clear
+---
+
+<br><br><br><br><br>
+
+.hi[.mono[INSTRUCTIONS]]: `R Practices` have the purpose of making students comfortable with the basics of  $\textsf{R}$ and $\textsf{R}$Studio for empirical economic analysis.
+
+In this practice, you will improve your **intuition** about the main `{tidyverse}` functions: `select()`, `filter()`, `mutate()`, and `group_by()`. Not only is it important to know how to apply them in your own tasks, but also to **interpret** what a *pipeline* is doing when you are manipulating your data.
+
+
+
+<br><br><br>
+
+
+.right[.hi[Have fun!]]
+
+
+---
+class: clear
+
+
+## Problem 1
+
+
+Suppose you are working with an .mono[R] object called `price_data` in your .mono[R]Studio environment. (This file does not exist in reality.) It looks like the following:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+
+price_data <- tibble(
+  year = c(2006, 2007, 2008, 2015, 2006, 2008, 2008, 2007, 2015),
+  price = c(2.50, 3.00, 3.15, 2.00, 1.15, 2.75, 4.00, 5.15, 2.00),
+  state = c("NY", "LA", "CA", "ID", "VT", "NY", "CT", "CT", "NY")
+)
+
+```
+
+
+```{r}
+
+price_data
+
+```
+
+
+For the following 5 parts, write down, in plain English, what each pipeline is trying to extract from this data set:
+
+<br>
+
+(a)
+
+```{r, eval=FALSE}
+
+price_data %>% 
+  select(year, price)
+
+```
+
+(b)
+
+```{r, eval=FALSE}
+
+price_data %>% 
+  filter(year > 2008)
+
+```
+
+
+(c)
+
+```{r, eval=FALSE}
+
+price_data_subset <- price_data %>% 
+  filter(state %in% c("NY", "CT"))
+
+
+```
+
+(d)
+
+```{r, eval=FALSE}
+
+price_data %>% 
+  mutate(price_cents = price * 100)
+
+```
+
+(e)
+
+```{r, eval=FALSE}
+
+price_data %>% 
+  group_by(year) %>% 
+  summarize(mean_price = mean(price))
+
+
+```
+
+
+---
+exclude:true

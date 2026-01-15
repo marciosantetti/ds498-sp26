@@ -1,0 +1,91 @@
+---
+title: ".hi[DS 498-02]"
+subtitle: ".b[R Practice 4]"
+author: ".b[Prof. Santetti] <br> Spring 2026"
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'a-css.css']
+    # self_contained: true
+    nature:
+      ratio: '8.5:11'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+layout: true
+class: clear
+---
+
+<br><br><br><br><br>
+
+.hi[.mono[INSTRUCTIONS]]: `R Practices` have the purpose of making students comfortable with the basics of  $\textsf{R}$ and $\textsf{R}$Studio for empirical economic analysis.
+
+In this practice, you will start practicing your first `ggplot` skills. First, you will check out some *incorrect* coding, and, secondly, think backwards to figure out the code that generated a given plot.
+
+
+
+
+<br><br><br>
+
+
+.right[.hi[Have fun!]]
+
+
+---
+class: clear
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+
+```
+
+
+## Problem 1
+
+<br>
+
+Suppose a friend of yours is trying to chart the inflation rate for Australia over time using their "ggplotting" knowledge. Their attempts are not being successful, though. You will come for their rescue. For the following two parts, point out what is being done *incorrectly* in each plotting attempt: 
+
+(a)
+
+```{r, eval=FALSE}
+data %>% 
+  ggplot(aes(x = year, y = inflation_rate)) %>% 
+  geom_line()
+```
+
+
+(b)
+
+
+```{r, eval=FALSE}
+data %>% 
+  ggplot(x = year, y = inflation_rate) +
+  geom_line()
+```
+
+
+## Problem 2
+
+<br>
+
+This time, you will work backwards. Below is a plot made using the `gdp-data.csv` file you've used for the 3rd video lecture. Figure out the code that produced this chart. *Hint 1*: You have access to the data file, so you can check if your code actually reproduces this plot. *Hint 2*: Pay close attention each axis variable. 
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, dev = "svg", fig.height=4}
+
+dat <- read_csv("gdp-data.csv")
+
+dat %>% 
+  mutate(gdp_ppp_per_capita = gdp_ppp / population) %>% 
+  ggplot(aes(x = year, y = gdp_ppp_per_capita, color = country)) +
+  geom_line() 
+
+```
+
+
+
+
+---
+exclude:true

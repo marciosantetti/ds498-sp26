@@ -1,0 +1,81 @@
+---
+title: ".hi[DS 498--02]"
+subtitle: ".b[R Practice 1]"
+author: ".b[Prof. Santetti] <br> Spring 2026"
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'a-css.css']
+    # self_contained: true
+    nature:
+      ratio: '8.5:11'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+layout: true
+class: clear
+---
+
+<br><br><br><br><br>
+
+.hi[.mono[INSTRUCTIONS]]: `R Practices` have the purpose of making students comfortable with the basics of  $\textsf{R}$ and $\textsf{R}$Studio for empirical economic analysis.
+
+In this practice, you will exercise the workflow shown in the video lecture that we should adopt every time working in .mono[R]Studio: (*i*) open an .mono[R] script; (*ii*) setting the working directory; (*iii*) installing/loading the necessary packages; and (*iv*) importing the necessary data files we will be working with.
+
+
+
+<br><br><br>
+
+
+.right[.hi[Have fun!]]
+
+
+---
+class: clear
+
+
+## Problem 1
+
+
+
+<br>
+
+After opening .mono[R]Studio, let us start this workflow by creating a fresh new .mono[R] script. It is probably going to have the name "*Untitled1*" for now. Keep it that way. We will save it later.
+
+Then, it is time to set your *working directory*. Follow the the instructions in the video and choose your desired folder to save your work. (I *recommend* creating a folder in your computer first, where your materials for this course will be stored, and then setting the working directory. Do not try to create folders through .mono[R]Studio; it will not work out.)
+
+After your working directory is set, save this .mono[R] script, giving your *first name* to this .mono[R] file (mine would be `marcio.R`, for instance).
+
+Next, assuming that you have already installed the `{tidyverse}` package, suppose you would like to import a *fictitious* `.csv` file called `macro_indicators.csv`. (This file does not exist; it's just for practice purposes.) What are the .hi[two] necessary .mono[R] commands to properly import this file into your .mono[R]Studio environment?
+
+Write these commands in your .mono[R] script, but do not run them (since the `.csv` file does not actually exist; this problem's purpose is just to familiarize yourself with the *syntax* and *workflow* of our software). Either above or next to the command itself, use `#` symbols to write&mdash;in plain English&mdash;what each of these two functions do.
+
+<br>
+
+## Problem 2
+
+
+<br>
+
+Suppose one of your friends wants to use .mono[R]Studio to manipulate some macroeconomic data file. They have it saved as `macro_data.csv`. Their working directory is properly set and all necessary packages are installed, and the only remaining task is to properly import it. They are not being successful, and show you the code to see what is wrong. It looks like the .mono[R] code below:
+
+```{}
+library(tidyverse)
+
+
+my data <- read_csv("macro_data.csv")     ## 1st attempt
+
+my_data <- read_csv(macro_data.csv)       ## 2nd attempt
+
+my_data <- read_csv("macro_data")         ## 3rd attempt
+
+
+```
+
+
+<br>
+
+None of these 3 attempts at importing the data work out, and they do not know why. Explain, in words, what are the incorrect parts in these 3 attempts, and then show the correct line of code to import this data set.
+
+---
+exclude:true

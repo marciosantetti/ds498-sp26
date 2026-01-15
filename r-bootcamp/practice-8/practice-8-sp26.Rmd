@@ -1,0 +1,83 @@
+---
+title: ".hi[DS 498-02]"
+subtitle: ".b[R Practice 8]"
+author: ".b[Prof. Santetti] <br> Spring 2026"
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'a-css.css']
+    # self_contained: true
+    nature:
+      ratio: '8.5:11'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+layout: true
+class: clear
+---
+
+<br><br><br><br><br><br><br><br><br><br>
+
+.hi[.mono[INSTRUCTIONS]]: `R Practices` have the purpose of making students comfortable with the basics of  $\textsf{R}$ and $\textsf{R}$Studio for empirical economic analysis.
+
+In this practice, you will exercise fixing improper variable classes when .mono[R]Studio is unable to fully interpret your data sets.
+
+
+
+
+<br><br><br>
+
+
+.right[.hi[Have fun!]]
+
+
+---
+class: clear
+
+## Problem 1
+
+<br>
+
+The file `current_account_balance.csv` is available for download on `theSpring`, and it brings data on the U.S. Balance of Payments' *current account*, which includes, among other variables, the *trade balance* (*Exports - Imports*) observed in the country over the post-war period. 
+
+You will notice that, when importing this data set into .mono[R]Studio, at least one of its columns will not have the proper class. Based on this topic's  video lecture, fix this problems to create the plot below. 
+
+.b[OBS]: Do not forget to include proper labels.
+
+
+
+<br>
+
+
+
+
+```{r, echo=FALSE, dev = "svg", message=FALSE, warning=FALSE, fig.height=4}
+library(tidyverse)
+
+
+dat <- read_csv("netfi.csv")
+
+
+dat <- dat %>% 
+  mutate(date = as.character(DATE),
+         balance = as.character(NETFI)) %>% 
+  select(date, balance)
+
+
+
+dat %>% 
+  mutate(date = seq(as.Date("1947-01-01"), by = "quarter", length.out = 303),
+         balance = as.double(balance)) %>% 
+  ggplot(aes(x = date, y = balance)) +
+  geom_line() +
+  labs(x = "",
+       y = "Billions of dollars",
+       title = "U.S. Balance on current account",
+       subtitle = "1947Q1 - 2022Q3",
+       caption = "Source:  U.S. Bureau of Economic Analysis.")
+
+```
+
+
+---
+exclude:true

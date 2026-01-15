@@ -1,0 +1,122 @@
+---
+title: ".hi[DS 498-02]"
+subtitle: ".b[R Practice 6]"
+author: ".b[Prof. Santetti] <br> Spring 2026"
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'a-css.css']
+    # self_contained: true
+    nature:
+      ratio: '8.5:11'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+layout: true
+class: clear
+---
+
+<br><br><br><br><br><br><br><br><br><br>
+
+.hi[.mono[INSTRUCTIONS]]: `R Practices` have the purpose of making students comfortable with the basics of  $\textsf{R}$ and $\textsf{R}$Studio for empirical economic analysis.
+
+In this practice, you will fully *customize* a set of plots, so that not only does your audience get informed, but also appreciate the care that you put on designing the visualization of your data.
+
+
+<br><br><br>
+
+.right[.hi[Have fun!]]
+
+
+---
+class: clear
+
+## Problem 1
+
+<br>
+
+Putting to practice all of your `ggplotting` knowledge learned so far, try your best to *replicate* the set of plots below. The data set is `inflation_lab6.csv` (available on `theSpring`), bringing the Consumer Price Index (CPI) for 4 countries measured by the [`International Monetary Fund`](https://www.imf.org/en/Home) (IMF).
+
+If you do not get the custom fonts or colors exactly right, no worries. What matters is that you practice everything learned so far.
+
+As a few hints, I have used the `{patchwork}` package to organize the plots layout, with the `theme_bw()`, from the `{ggthemes}` package, as the chosen theme. The custom font used was "Roboto Slab" from [`Google Fonts`](https://fonts.google.com/specimen/Roboto+Slab), and the colors' hex codes chosen for each plot were:
+
+  - United States: `#cd271b`
+  - Colombia: `#f0c235`
+  - Cameroon: `#429a1b`
+  - New Zealand: `#594e4e`
+  
+<br>
+
+```{r, dev = "svg", echo=FALSE, message=FALSE, warning=FALSE, fig.asp=.8}
+library(tidyverse)
+library(patchwork)
+library(ggthemes)
+library(showtext)
+
+font_add_google(name = "Roboto Slab", family = "slab")
+
+showtext_auto()
+
+
+####
+
+theme_set(theme_bw(base_family = "slab", base_size = 8))
+
+dat <- read_csv("inflation_lab6.csv")
+
+
+p1 <- dat %>% 
+  filter(country %in% "United States") %>% 
+  ggplot(aes(x = period, y = cpi)) +
+  geom_line(color = "#cd271b", size = 0.7) +
+  geom_point(color = "#cd271b") +
+  labs(title = "Consumer Price Index, United States",
+       subtitle = "1960 - 2021",
+       x = "",
+       y = "% change from previous year") 
+
+
+
+p2 <- dat %>% 
+  filter(country %in% "Colombia") %>% 
+  ggplot(aes(x = period, y = cpi)) +
+  geom_line(color = "#f0c235", size = 0.7) +
+  geom_point(color = "#f0c235") +
+  labs(title = "Consumer Price Index, Colombia",
+       subtitle = "1960 - 2021",
+       x = "",
+       y = "% change from previous year")
+
+
+p3 <- dat %>% 
+  filter(country %in% "Cameroon") %>% 
+  ggplot(aes(x = period, y = cpi)) +
+  geom_line(color = "#429a1b", size = 0.7) +
+  geom_point(color = "#429a1b") +
+  labs(title = "Consumer Price Index, Cameroon",
+       subtitle = "1969 - 2021",
+       x = "",
+       y = "% change from previous year")
+
+
+p4 <- dat %>% 
+  filter(country %in% "New Zealand") %>% 
+  ggplot(aes(x = period, y = cpi)) +
+  geom_line(color = "#594e4e", size = 0.7) +
+  geom_point(color = "#594e4e") +
+  labs(title = "Consumer Price Index, New Zealand",
+       subtitle = "1960 - 2021",
+       caption = "Source: International Monetary Fund.",
+       x = "",
+       y = "% change from previous year")
+
+
+(p1 | p2) / (p3 | p4)
+
+```
+
+
+
+---
+exclude:true
